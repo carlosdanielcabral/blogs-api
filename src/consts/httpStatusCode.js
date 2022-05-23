@@ -9,4 +9,4 @@ const HTTP_STATUS_CODE = {
   unauthorized: 401,
 };
 
-export default HTTP_STATUS_CODE;
+module.exports = HTTP_STATUS_CODE;

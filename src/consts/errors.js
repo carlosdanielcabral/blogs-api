@@ -1,4 +1,4 @@
-import HTTP_STATUS_CODE from './httpStatusCode';
+const HTTP_STATUS_CODE = require('./httpStatusCode');
 
 const ERRORS = {
   categoryNotFound: {
@@ -43,4 +43,4 @@ const ERRORS = {
   },
 };
 
-export default ERRORS;
+module.exports = ERRORS;
