@@ -5,6 +5,10 @@ const ERRORS = {
     code: HTTP_STATUS_CODE.badRequest,
     message: 'Some required fields are missing',
   },
+  internalServerError: {
+    code: HTTP_STATUS_CODE.internalServerError,
+    message: 'Internal server error',
+  },
   invalidFields: {
     code: HTTP_STATUS_CODE.badRequest,
     message: 'Invalid fields',

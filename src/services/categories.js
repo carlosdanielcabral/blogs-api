@@ -1,4 +1,4 @@
-import { Categories } from '../database/models';
+const { Categories } = require('../database/models');
 
 const findAll = async () => Categories.findAll();
 

@@ -1,6 +1,6 @@
-import Op from 'sequelize';
-import { BlogPosts, PostCategories, User } from '../database/models';
-import ERRORS from '../consts/errors';
+const Op = require('sequelize');
+const { BlogPosts, PostCategories, User } = require('../database/models');
+const ERRORS = require('../consts/errors');
 
 const findAll = async () => BlogPosts.findAll({
   include: [{

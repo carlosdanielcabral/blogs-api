@@ -1,5 +1,5 @@
-import { User } from '../database/models';
-import ERRORS from '../consts/errors';
+const { User } = require('../database/models');
+const ERRORS = require('../consts/errors');
 
 const remove = async (id) => User.destroy(id);
 
