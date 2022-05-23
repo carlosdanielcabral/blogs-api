@@ -1,5 +1,5 @@
 const Op = require('sequelize');
-const { BlogPosts, PostCategories, User } = require('../database/models');
+const { BlogPosts, Categories, PostCategories, User } = require('../database/models');
 const ERRORS = require('../consts/errors');
 
 const findAll = async () => BlogPosts.findAll({
@@ -38,10 +38,16 @@ const findById = async (id) => {
 
 const register = async (title, content, categoryIds, userId) => {
   const blogPost = await BlogPosts.create({ title, content, userId });
-  const categories = categoryIds.map((categoryId) =>
-    PostCategories.register(blogPost.id, categoryId));
 
-  await Promise.all(categories);
+  const categories = await Promise.all(categoryIds.map((categoryId) => 
+    Categories.findById(categoryId)));
+
+  const { error } = categories.find((category) => category.error);
+
+  if (error) return { error };
+
+  await Promise.all(categoryIds.map((categoryId) =>
+    PostCategories.register(blogPost.id, categoryId)));
 
   return blogPost;
 };

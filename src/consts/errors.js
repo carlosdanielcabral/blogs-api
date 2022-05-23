@@ -1,6 +1,10 @@
 import HTTP_STATUS_CODE from './httpStatusCode';
 
 const ERRORS = {
+  categoryNotFound: {
+    code: HTTP_STATUS_CODE.notFound,
+    message: '\\"categoryIds\\" not found',
+  },
   missingData: {
     code: HTTP_STATUS_CODE.badRequest,
     message: 'Some required fields are missing',

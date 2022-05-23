@@ -18,9 +18,9 @@ const findById = async (req, res, next) => {
 };
 
 const register = async (req, res, next) => {
-  const { body: { title, content }, user: { id: userId } } = req;
+  const { body: { title, content, categoryIds }, user: { id: userId } } = req;
 
-  const blogPost = await BlogPosts.register(title, content, userId);
+  const blogPost = await BlogPosts.register(title, content, categoryIds, userId);
 
   if (blogPost.error) return next({ error: blogPost.error });
 
