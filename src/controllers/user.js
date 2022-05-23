@@ -3,7 +3,7 @@ const HTTP_STATUS_CODE = require('../consts/httpStatusCode');
 const token = require('../auth/token');
 
 const findAll = async (req, res) => {
-  const user = User.findAll();
+  const user = await User.findAll();
 
   res.status(HTTP_STATUS_CODE.ok).json(user);
 };
@@ -11,7 +11,7 @@ const findAll = async (req, res) => {
 const findById = async (req, res, next) => {
   const { id } = req.params;
 
-  const user = User.findById(id);
+  const user = await User.findById(id);
 
   if (user.error) return next({ error: user.error });
 
@@ -21,7 +21,7 @@ const findById = async (req, res, next) => {
 const login = async (req, res, next) => {
   const { email, password } = req.body;
 
-  const user = User.login(email, password);
+  const user = await User.login(email, password);
 
   if (user.error) return next({ error: user.error });
 
@@ -35,7 +35,7 @@ const login = async (req, res, next) => {
 const register = async (req, res, next) => {
   const { displayName, email, password, image } = req.body;
 
-  const user = User.register(displayName, email, password, image);
+  const user = await User.register(displayName, email, password, image);
 
   if (user.error) return next({ error: user.error });
 
@@ -49,7 +49,7 @@ const register = async (req, res, next) => {
 const remove = async (req, res, next) => {
   const { id } = req.params;
 
-  const user = User.remove(id);
+  const user = await User.remove(id);
 
   if (user.error) return next({ error: user.error });
 

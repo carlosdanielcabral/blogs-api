@@ -36,16 +36,8 @@ const findById = async (id) => {
   return blogPost;
 };
 
-// const login = async (email, password) => {
-//   const user = await User.findOne({ where: { email } });
-
-//   if (!user || user.password !== password) return { error: ERRORS.invalidFields };
-
-//   return user;
-// };
-
-const register = async (title, content, categoryIds) => {
-  const blogPost = await BlogPosts.create({ title, content });
+const register = async (title, content, categoryIds, userId) => {
+  const blogPost = await BlogPosts.create({ title, content, userId });
   const categories = categoryIds.map((categoryId) =>
     PostCategories.register(blogPost.id, categoryId));
 

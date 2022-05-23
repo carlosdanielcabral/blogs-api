@@ -2,7 +2,7 @@ const Categories = require('../services/categories');
 const HTTP_STATUS_CODE = require('../consts/httpStatusCode');
 
 const findAll = async (req, res) => {
-  const categories = Categories.findAll();
+  const categories = await Categories.findAll();
 
   res.status(HTTP_STATUS_CODE.ok).json(categories);
 };
@@ -10,7 +10,7 @@ const findAll = async (req, res) => {
 const register = async (req, res, next) => {
   const { name } = req.body;
 
-  const category = Categories.register(name);
+  const category = await Categories.register(name);
 
   if (category.error) return next({ error: category.error });
 
