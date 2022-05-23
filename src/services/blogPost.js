@@ -1,19 +1,19 @@
 const Op = require('sequelize');
-const { BlogPosts, Categories, PostCategories, User } = require('../database/models');
+const { BlogPost, Category, PostCategory, User } = require('../database/models');
 const ERRORS = require('../consts/errors');
 
-const findAll = async () => BlogPosts.findAll({
+const findAll = async () => BlogPost.findAll({
   include: [{
     model: User,
     as: 'user',
     attributes: ['id', 'displayName', 'email', 'image'],
   }, {
-    model: PostCategories,
+    model: PostCategory,
     as: 'categories',
   }],
 });
 
-const findByField = async (q, value) => BlogPosts.findOne({
+const findByField = async (q, value) => BlogPost.findOne({
   where: {
     [q]: { [Op.like]: `%${value}%` },
   },
@@ -26,7 +26,7 @@ const findById = async (id) => {
       as: 'user',
       attributes: ['id', 'displayName', 'email', 'image'],
     }, {
-      model: PostCategories,
+      model: PostCategory,
       as: 'categories',
     }],
   });
@@ -37,17 +37,17 @@ const findById = async (id) => {
 };
 
 const register = async (title, content, categoryIds, userId) => {
-  const blogPost = await BlogPosts.create({ title, content, userId });
+  const blogPost = await BlogPost.create({ title, content, userId });
 
   const categories = await Promise.all(categoryIds.map((categoryId) => 
-    Categories.findById(categoryId)));
+    Category.findById(categoryId)));
 
   const { error } = categories.find((category) => category.error);
 
   if (error) return { error };
 
   await Promise.all(categoryIds.map((categoryId) =>
-    PostCategories.register(blogPost.id, categoryId)));
+    PostCategory.register(blogPost.id, categoryId)));
 
   return blogPost;
 };
@@ -67,7 +67,7 @@ const update = async (id, title, content, userId) => {
 
   if (blogPost.userId !== userId) return { error: ERRORS.unauthorizedUser };
 
-  return blogPost.update({
+  return BlogPost.update({
     title, content,
   }, {
     where: { id },
