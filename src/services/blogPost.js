@@ -65,6 +65,8 @@ const remove = async (postId, userId) => {
 
   if (post.userId !== userId) return { error: ERRORS.unauthorizedUser };
 
+  await BlogPost.destroy({ where: { id: userId } });
+
   return post;
 };
 

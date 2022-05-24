@@ -1,7 +1,7 @@
 const { User } = require('../database/models');
 const ERRORS = require('../consts/errors');
 
-const remove = async (id) => User.destroy(id);
+const remove = async (id) => User.destroy({ where: { id } });
 
 const findAll = async () => User.findAll({
   attributes: ['id', 'displayName', 'email', 'image'],

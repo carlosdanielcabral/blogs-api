@@ -47,7 +47,7 @@ const register = async (req, res, next) => {
 };
 
 const remove = async (req, res, next) => {
-  const { id } = req.params;
+  const { dataValues: { id } } = req.user;
 
   const user = await User.remove(id);
 
