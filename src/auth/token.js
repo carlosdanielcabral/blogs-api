@@ -1,6 +1,6 @@
 require('dotenv').config();
 const jwt = require('jsonwebtoken');
-const { User } = require('../database/models');
+const User = require('../services/user');
 const ERRORS = require('../consts/errors');
 
 const secret = process.env.JWT_SECRET;
@@ -24,7 +24,7 @@ const validateToken = async (req, res, next) => {
   try {
     const { data: { id } } = jwt.verify(token, secret);
 
-    const user = await User.findById({ where: { id } });
+    const user = await User.findById(id);
 
     if (!user) return next({ error: ERRORS.invalidToken });
 
@@ -32,7 +32,7 @@ const validateToken = async (req, res, next) => {
 
     next();
   } catch (err) {
-    return next({ error: ERRORS.internalServerError });
+    return next({ error: ERRORS.invalidToken });
   }
 };
 
