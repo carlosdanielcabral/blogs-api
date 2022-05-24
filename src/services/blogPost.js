@@ -20,7 +20,7 @@ const findByField = async (q, value) => BlogPost.findOne({
 });
 
 const findById = async (id) => {
-  const blogPost = User.findByPk(id, {
+  const blogPost = await User.findByPk(id, {
     include: [{
       model: User,
       as: 'user',
@@ -53,7 +53,7 @@ const register = async (title, content, categoryIds, userId) => {
 };
 
 const remove = async (postId, userId) => {
-  const post = findById(postId);
+  const post = await findById(postId);
 
   if (post.error) return { error: post.error };
 
@@ -61,7 +61,7 @@ const remove = async (postId, userId) => {
 };
 
 const update = async (id, title, content, userId) => {
-  const blogPost = findById(id);
+  const blogPost = await findById(id);
 
   if (blogPost.error) return { error: blogPost.error };
 

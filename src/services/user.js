@@ -8,7 +8,7 @@ const findAll = async () => User.findAll({
 });
 
 const findById = async (id) => {
-  const user = User.findByPk(id, {
+  const user = await User.findByPk(id, {
     attributes: ['id', 'displayName', 'email', 'image'],
   });
 
@@ -26,7 +26,7 @@ const login = async (email, password) => {
 };
 
 const register = async (displayName, email, password, image) => {
-  const user = User.findOne({ where: { email } });
+  const user = await User.findOne({ where: { email } });
 
   if (user) return { error: ERRORS.userAlreadyRegistered };
 
