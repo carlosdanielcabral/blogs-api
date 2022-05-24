@@ -28,7 +28,7 @@ const register = async (req, res, next) => {
 };
 
 const remove = async (req, res, next) => {
-  const { params: { id: postId }, user: { id: userId } } = req;
+  const { params: { id: postId }, user: { dataValues: { id: userId } } } = req;
 
   const blogPosts = await BlogPost.remove(postId, userId);
 
@@ -37,4 +37,18 @@ const remove = async (req, res, next) => {
   res.status(HTTP_STATUS_CODE.noContent).end();
 };
 
-module.exports = { findAll, findById, register, remove };
+const update = async (req, res, next) => {
+  const {
+    body: { title, content },
+    params: { id: postId },
+    user: { dataValues: { id: userId } },
+  } = req;
+
+  const blogPosts = await BlogPost.update(postId, title, content, userId);
+
+  if (blogPosts.error) return next({ error: blogPosts.error });
+
+  res.status(HTTP_STATUS_CODE.ok).json(blogPosts);
+};
+
+module.exports = { findAll, findById, register, remove, update };

@@ -75,11 +75,13 @@ const update = async (id, title, content, userId) => {
 
   if (blogPost.userId !== userId) return { error: ERRORS.unauthorizedUser };
 
-  return BlogPost.update({
+  await BlogPost.update({
     title, content,
   }, {
     where: { id },
   });
+
+  return findById(id);
 };
 
 module.exports = { findAll, findByField, findById, register, remove, update };
