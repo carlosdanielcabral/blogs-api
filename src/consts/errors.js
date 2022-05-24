@@ -2,8 +2,8 @@ const HTTP_STATUS_CODE = require('./httpStatusCode');
 
 const ERRORS = {
   categoryNotFound: {
-    code: HTTP_STATUS_CODE.notFound,
-    message: '\\"categoryIds\\" not found',
+    code: HTTP_STATUS_CODE.badRequest,
+    message: '"categoryIds" not found',
   },
   missingData: {
     code: HTTP_STATUS_CODE.badRequest,

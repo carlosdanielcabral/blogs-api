@@ -50,7 +50,7 @@ const register = async (title, content, categoryIds, userId) => {
 
   const error = categories.find((category) => category.error);
 
-  if (error) return { error };
+  if (error) return error;
 
   await Promise.all(categoryIds.map((categoryId) =>
     PostCategory.register(blogPost.id, categoryId)));
