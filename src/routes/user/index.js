@@ -9,6 +9,7 @@ const router = Router();
 
 router
   .post('/', validateAccessData, validateUserData, rescue(User.register))
+  .get('/:id', validateToken, rescue(User.findById))
   .get('/', validateToken, rescue(User.findAll));
 
 module.exports = router;
