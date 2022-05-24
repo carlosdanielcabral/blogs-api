@@ -8,7 +8,7 @@ const router = Router();
 
 router
   .post('/', validateToken, validatePostData, rescue(BlogPost.register))
-  // .get('/:id', validateToken, rescue(User.findById))
+  .get('/:id', validateToken, rescue(BlogPost.findById))
   .get('/', validateToken, rescue(BlogPost.findAll));
 
 module.exports = router;

@@ -20,7 +20,7 @@ const findByField = async (q, value) => BlogPost.findOne({
 });
 
 const findById = async (id) => {
-  const blogPost = await User.findByPk(id, {
+  const blogPost = await BlogPost.findByPk(id, {
     include: [{
       model: User,
       as: 'user',
