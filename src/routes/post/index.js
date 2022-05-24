@@ -9,6 +9,7 @@ const router = Router();
 router
   .post('/', validateToken, validatePostData, rescue(BlogPost.register))
   .get('/:id', validateToken, rescue(BlogPost.findById))
-  .get('/', validateToken, rescue(BlogPost.findAll));
+  .get('/', validateToken, rescue(BlogPost.findAll))
+  .delete('/:id', validateToken, rescue(BlogPost.remove));
 
 module.exports = router;

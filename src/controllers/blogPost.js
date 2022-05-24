@@ -18,7 +18,7 @@ const findById = async (req, res, next) => {
 };
 
 const register = async (req, res, next) => {
-  const { body: { title, content, categoryIds }, user: { id: userId } } = req;
+  const { body: { title, content, categoryIds }, user: { dataValues: { id: userId } } } = req;
 
   const blogPost = await BlogPost.register(title, content, categoryIds, userId);
 

@@ -22,8 +22,9 @@ const validateToken = async (req, res, next) => {
   if (!token) return next({ error: ERRORS.tokenNotFound });
 
   try {
-    const { data: { id } } = jwt.verify(token, secret);
+    const { data: { dataValues: { id } } } = jwt.verify(token, secret);
 
+    console.log('id', id);
     const user = await User.findById(id);
 
     if (!user) return next({ error: ERRORS.invalidToken });

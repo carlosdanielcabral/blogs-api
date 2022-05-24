@@ -1,5 +1,11 @@
 const Op = require('sequelize');
-const { BlogPost, Category, PostCategory, User } = require('../database/models');
+const {
+  BlogPost,
+  Category: CategoryModel,
+  User,
+} = require('../database/models');
+const Category = require('./category');
+const PostCategory = require('./postCategory');
 const ERRORS = require('../consts/errors');
 
 const findAll = async () => BlogPost.findAll({
@@ -8,7 +14,7 @@ const findAll = async () => BlogPost.findAll({
     as: 'user',
     attributes: ['id', 'displayName', 'email', 'image'],
   }, {
-    model: Category,
+    model: CategoryModel,
     as: 'categories',
   }],
 });
@@ -26,7 +32,7 @@ const findById = async (id) => {
       as: 'user',
       attributes: ['id', 'displayName', 'email', 'image'],
     }, {
-      model: Category,
+      model: CategoryModel,
       as: 'categories',
     }],
   });
@@ -42,7 +48,7 @@ const register = async (title, content, categoryIds, userId) => {
   const categories = await Promise.all(categoryIds.map((categoryId) => 
     Category.findById(categoryId)));
 
-  const { error } = categories.find((category) => category.error);
+  const error = categories.find((category) => category.error);
 
   if (error) return { error };
 
@@ -58,6 +64,8 @@ const remove = async (postId, userId) => {
   if (post.error) return { error: post.error };
 
   if (post.userId !== userId) return { error: ERRORS.unauthorizedUser };
+
+  return post;
 };
 
 const update = async (id, title, content, userId) => {
