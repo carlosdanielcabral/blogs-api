@@ -7,6 +7,7 @@ const Category = require('../../controllers/category');
 const router = Router();
 
 router
-  .post('/', validateToken, validateName, rescue(Category.register));
+  .post('/', validateToken, validateName, rescue(Category.register))
+  .get('/', validateToken, rescue(Category.findAll));
 
 module.exports = router;
