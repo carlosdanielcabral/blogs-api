@@ -8,7 +8,7 @@ const findAll = async () => BlogPost.findAll({
     as: 'user',
     attributes: ['id', 'displayName', 'email', 'image'],
   }, {
-    model: PostCategory,
+    model: Category,
     as: 'categories',
   }],
 });
@@ -26,7 +26,7 @@ const findById = async (id) => {
       as: 'user',
       attributes: ['id', 'displayName', 'email', 'image'],
     }, {
-      model: PostCategory,
+      model: Category,
       as: 'categories',
     }],
   });
