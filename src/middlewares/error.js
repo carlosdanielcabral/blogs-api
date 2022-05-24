@@ -1,7 +1,12 @@
 const errorMiddlware = (err, _req, res, _next) => {
-  if (err.isJoi) return res.status(400).json({ error: { message: err.details[0].message } });
+  console.log(err.error);
+  if (err.isJoi) {
+    return res.status(400).json({ message: err.details[0].message });
+  }
 
-  res.status(err.code).json({ error: { message: err.message } });
+  const { code, message } = err.error;
+
+  res.status(code).json({ message });
 };
 
 module.exports = errorMiddlware;

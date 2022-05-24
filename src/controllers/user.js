@@ -1,6 +1,6 @@
 const User = require('../services/user');
 const HTTP_STATUS_CODE = require('../consts/httpStatusCode');
-const token = require('../auth/token');
+const { generateToken } = require('../auth/token');
 
 const findAll = async (req, res) => {
   const user = await User.findAll();
@@ -27,9 +27,9 @@ const login = async (req, res, next) => {
 
   const { password: userPassword, ...data } = user;
 
-  const newToken = token.generateToken(data);
+  const token = generateToken(data);
 
-  res.status(HTTP_STATUS_CODE.ok).json({ token: newToken });
+  res.status(HTTP_STATUS_CODE.ok).json({ token });
 };
 
 const register = async (req, res, next) => {
@@ -41,9 +41,9 @@ const register = async (req, res, next) => {
 
   const { password: userPassword, ...data } = user;
 
-  const newToken = token.generateToken(data);
+  const token = generateToken(data);
 
-  res.status(HTTP_STATUS_CODE.created).json({ token: newToken });
+  res.status(HTTP_STATUS_CODE.created).json({ token });
 };
 
 const remove = async (req, res, next) => {
