@@ -37,6 +37,15 @@ const remove = async (req, res, next) => {
   res.status(HTTP_STATUS_CODE.noContent).end();
 };
 
+const searchPost = async (req, res) => {
+  const { q } = req.query;
+
+  const post = await BlogPost.findByQuery(q);
+
+  console.log('\n\n\n\nn\n\n\n\n\\n\n\n\nPOST:', post, '\n\n\n\n\n\n\n\n\n\n\n\n');
+  res.status(HTTP_STATUS_CODE.ok).json(post);
+};
+
 const update = async (req, res, next) => {
   const {
     body: { title, content },
@@ -51,4 +60,4 @@ const update = async (req, res, next) => {
   res.status(HTTP_STATUS_CODE.ok).json(blogPosts);
 };
 
-module.exports = { findAll, findById, register, remove, update };
+module.exports = { findAll, findById, register, remove, searchPost, update };

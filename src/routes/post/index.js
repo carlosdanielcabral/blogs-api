@@ -9,6 +9,7 @@ const router = Router();
 
 router
   .post('/', validateToken, validatePostData, rescue(BlogPost.register))
+  .get('/search', validateToken, rescue(BlogPost.searchPost))
   .get('/:id', validateToken, rescue(BlogPost.findById))
   .get('/', validateToken, rescue(BlogPost.findAll))
   .put('/:id', validateToken, validatePostDataUpdate, rescue(BlogPost.update))
