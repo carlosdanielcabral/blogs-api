@@ -9,14 +9,8 @@ Este foi um dos projetos propostos pela Trybe no seu curso de Desenvolvimento We
 
 > Node, Express. Javascript, Sequelize, JWT.
 
-## Instalando dependências
-
-```bash
-npm install
-```
-
 ## Executando a aplicação
 
 ```bash
-npm start
+docker-compose up
 ```
