@@ -1,4 +1,4 @@
-const { User } = require('../database/models');
+const { User } = require('../../models');
 const ERRORS = require('../consts/errors');
 
 const remove = async (id) => User.destroy({ where: { id } });

@@ -12,9 +12,9 @@ services:
 
   api:
     build: .
-    user: node
     volumes:
       - ./:/app
+      - /app/node_modules
     container_name: blogs_api
     restart: always
     depends_on:
@@ -24,5 +24,5 @@ services:
     environment:
       MYSQL_USER: root
       MYSQL_PASSWORD: password
-      HOSTNAME: db
+      HOSTNAME: database
       JWT_SECRET: secretJWT

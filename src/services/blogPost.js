@@ -3,7 +3,7 @@ const {
   BlogPost,
   Category: CategoryModel,
   User,
-} = require('../database/models');
+} = require('../../models');
 const Category = require('./category');
 const PostCategory = require('./postCategory');
 const ERRORS = require('../consts/errors');

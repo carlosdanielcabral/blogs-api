@@ -1,4 +1,4 @@
-const { PostCategory } = require('../database/models');
+const { PostCategory } = require('../../models');
 
 const register = async (postId, categoryId) => PostCategory.create({ postId, categoryId });
 

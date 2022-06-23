@@ -1,4 +1,4 @@
-const { Category } = require('../database/models');
+const { Category } = require('../../models');
 const ERRORS = require('../consts/errors');
 
 const findAll = async () => Category.findAll();
