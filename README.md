@@ -7,7 +7,7 @@ Este foi um dos projetos propostos pela Trybe no seu curso de Desenvolvimento We
 
 ## Tecnologias utilizadas
 
-> Node, Express. Javascript, Sequelize, JWT.
+> Node, Express, Javascript, Sequelize, JWT.
 
 ## Executando a aplicação
 
