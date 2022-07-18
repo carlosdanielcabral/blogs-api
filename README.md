@@ -9,6 +9,10 @@ Este foi um dos projetos propostos pela Trybe no seu curso de Desenvolvimento We
 
 > Node, Express, Javascript, Sequelize, JWT.
 
+## Dependências necessárias
+
+Para a execução deste projeto é necessário ter o Docker e Docker Compose instalados na máquina.
+
 ## Executando a aplicação
 
 ```bash
