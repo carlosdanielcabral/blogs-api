@@ -9,7 +9,7 @@ const router = Router();
 router
   .use('/login', login)
   .use('/user', user)
-  .use('/categories', category)
+  .use('/category', category)
   .use('/post', post);
 
 module.exports = router;
