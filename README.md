@@ -1,7 +1,7 @@
 # Blogs - API
 
 # Contexto
-Trata-se uma API para um blog. Essa API cuida do cadastro e autenticação de usuários e do salvamento, edição, pesquisa e remoção de posts.
+Trata-se de uma API para um blog. Essa API cuida do cadastro e autenticação de usuários e do salvamento, edição, pesquisa e remoção de posts.
 
 Este foi um dos projetos propostos pela Trybe no seu curso de Desenvolvimento Web. Toda a modelagem de dados foi feita pelas pessoas instrutoras.
 
